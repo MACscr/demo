@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Archilex\AdvancedTables\Concerns\HasViews;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasTenants;
 use Filament\Panel;
@@ -17,6 +18,7 @@ class User extends Authenticatable implements FilamentUser, HasTenants, MustVeri
 {
     use HasApiTokens;
     use HasFactory;
+    use HasViews;
     use Notifiable;
 
     /**

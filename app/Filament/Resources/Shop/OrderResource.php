@@ -82,6 +82,7 @@ class OrderResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->headerActions(self::demoHeaderActions($table))
             ->columns([
                 Tables\Columns\TextColumn::make('number')
                     ->searchable()
@@ -355,5 +356,26 @@ class OrderResource extends Resource
                 'md' => 10,
             ])
             ->required();
+    }
+
+    private static function demoHeaderActions($table): array
+    {
+        $activeTab = $table->getLivewire()->activeTab;
+
+        ray($activeTab);
+
+        $actions = [];
+
+        if ($activeTab === 'new') {
+            $actions[] = Tables\Actions\Action::make('new')
+                ->label('New');
+        }
+
+        if ($activeTab === 'processing') {
+            $actions[] = Tables\Actions\Action::make('processing')
+                ->label('Processing');
+        }
+
+        return $actions;
     }
 }
